@@ -3,7 +3,7 @@
 You will build OctoFit Tracker using:
 - Presentation tier: React 19
 - Logic tier: Node.js + Express + TypeScript
-- Data tier: MongoDB
+- Data tier: MongoDB.
 
 Ports used in this exercise:
 - 5173 (public)

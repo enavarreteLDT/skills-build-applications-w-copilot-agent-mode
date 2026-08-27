@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 
-export default function ResourceList({ component, title, description, columns, renderRow }) {
+export default function ResourceList({ component, endpoint, title, description, columns, renderRow }) {
   const [records, setRecords] = useState([])
   const [state, setState] = useState({ loading: true, error: '' })
 
   useEffect(() => {
     let active = true
-    fetchCollection(component).then((items) => {
+    fetchCollection(endpoint).then((items) => {
       if (active) { setRecords(items); setState({ loading: false, error: '' }) }
     }).catch((error) => active && setState({ loading: false, error: error.message }))
     return () => { active = false }
-  }, [component])
+  }, [component, endpoint])
 
   return <section className="resource-page"><div className="page-heading"><p className="eyebrow">OctoFit / {component}</p><h1>{title}</h1><p className="intro">{description}</p></div><div className="data-panel">
     {state.loading && <p className="empty-state">Loading {component}...</p>}
